@@ -1,0 +1,57 @@
+body {
+    background-color: lightblue;
+    }
+
+.TitleBox {
+background-color: rgb(20, 7, 13);
+color: #fff;
+font-size: 350px;
+height: 50%;
+width: 100%;
+/* padding: 40px; */
+padding: auto;
+border: solid 3px whitesmoke;
+margin: 0%;
+text-align: center;
+}
+
+.hide {
+display: none;
+}
+
+  .ScoreBox {
+    background-color: rgb(132, 15, 74);
+    color: #fff;
+    height: 100px;
+    width: 400px;
+    padding: 20px;
+    border: solid 3px whitesmoke;
+    margin: 0%;
+    text-align: center;
+            }
+
+
+  .TimerBox {
+    align-content: center;
+    background-color: rgb(186, 75, 130);
+    color: #fff;
+    height: 100px;
+    width: 600px;
+    padding: 20px;
+    border: solid 3px whitesmoke;
+    margin: 0%;
+    text-align: center;
+    align-items: center;
+            }
+
+.QuizBox {
+    background-color: rgb(244, 179, 211);
+    color: #fff;
+    height: 400px;
+    width: 900px;
+    padding: 20px;
+    border: solid 3px whitesmoke;
+    margin: 0%;
+    text-align: center;
+    align-items: center;
+        }
