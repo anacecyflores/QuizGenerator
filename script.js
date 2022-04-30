@@ -1,139 +1,119 @@
-
-var pass = document.querySelector(".pass");
-var fail = document.querySelector(".fail");
+// timer and scorebox global variables
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".startTimer");
-var scoreBox = document.querySelector(".scoreBox")
-var timerBox = document.querySelector(".TimerBox")
-var quizBox = document.querySelector(".QuizBox")
+var resetButton = document.querySelector(".resetButton");
+var scoreBox = document.querySelector(".scoreBox");
+var timerBox = document.querySelector(".TimerBox");
+var quizBox = document.querySelector(".QuizBox");
+var timer = document.querySelector("#timer");
+var currentScore = document.querySelector("#currentScore");
+// quiz section global variables
+var questionDisplay = document.querySelector("#questionT");
+var choiceDisplay1 = document.querySelector("#choiceA");
+var choiceDisplay2 = document.querySelector("#choiceB");
+var choiceDisplay3 = document.querySelector("#choiceC");
+var choiceDisplay4 = document.querySelector("#choiceD");
 
-var questions =[
-    {
-        questionTitle: "This is Question 1",
-        choiceA: "choice A ",
-        choiceB: "choice b",
-        choiceC: "chocie c",
-        choiceD: "choice d",
-        correctAnswer: "choiceA"
-    },
-        {
-        questionTitle: "This is Question 2",
-        choiceA: "choice A ",
-        choiceB: "choice b",
-        choiceC: "chocie c",
-        choiceD: "choice d",
-        correctAnswer: "choiceB"
+// Question Carousel (from student practice #18)
+var currentQuestion = 0;
+// 60 seconds given for the quiz
+var startTime = 60;
+// global score variable
+var score = 0;
+// adding score to current score in box
+currentScore = score;
+// timer function
+function timerStart() {
+  let timeInterval;
+  timeInterval = setInterval(function () {
+    if (startTime >= 1) {
+      startTime--;
+      timer.textContent = startTime + " Time Left";
+    } else {
+      clearInterval(timeInterval);
+      timer.textContent = "Quiz Over!";
     }
-]
-console.log (questions)
-console.log ("This is first question", questions [0])
-console.log ( questions [0].choiceA)
-
-function showQuestions () {
-var questionHeader = document.getElementById ("questionT")
-questionHeader.textContent= questions [0].questionTitle
+  }, 1000);
 }
 
+// Question Index
+var questions = [
+  {
+    questionTitle: "HTML is considered as ______ ?",
+    choiceA: "Programming language ",
+    choiceB: "High Level Language",
+    choiceC: "High Level Language",
+    choiceD: "Markup Language",
+    correctAnswer: "choiceD",
+  },
+  {
+    questionTitle: "HTML uses____?",
+    choiceA: "user-defined tags",
+    choiceB: "predefined tags",
+    choiceC: "Fixed tags defined by the language",
+    choiceD: "tags for links only",
+    correctAnswer: "choiceC",
+  },
+  {
+    questionTitle:
+      " If we want to set the style for just one element, which css selector will we use?",
+    choiceA: "id ",
+    choiceB: "text",
+    choiceC: "class",
+    choiceD: "name",
+    correctAnswer: "choiceA",
+  },
+  {
+    questionTitle: " Which organization defines Web standards?",
+    choiceA: "Apple Inc. ",
+    choiceB: "IBM Corporation",
+    choiceC: "World Wide Web Consortium",
+    choiceD: "Microsoft Corporation",
+    correctAnswer: "choiceC",
+  },
+];
+// Questions Function
+function showQuestions() {
+  questionDisplay.textContent = questions[currentQuestion].questionTitle;
+  choiceDisplay1.textContent = questions[currentQuestion].choiceA;
+  choiceDisplay2.textContent = questions[currentQuestion].choiceB;
+  choiceDisplay3.textContent = questions[currentQuestion].choiceC;
+  choiceDisplay4.textContent = questions[currentQuestion].choiceD;
+}
+// This function hides items in the beginning of quiz
 function startQuiz() {
-    var titleSection= document.querySelector (".TitleBox")
-    console.log ( titleSection )
-    titleSection.classList.add ("hide")
-    scoreBox.classList.remove ("hide")
-    timerBox.classList.remove ("hide")
-    quizBox.classList.remove ("hide")
-    showQuestions ()
-    // Sets timer
-    timer = setInterval(function() {
-      timerCount--;
-      timerElement.textContent = timerCount;
-      if (timerCount >= 0) {
-        // Tests if win condition is met
-        if (isPass && timerCount > 0) {
-          // Clears interval and stops timer
-          clearInterval(timer);
-          passQuiz();
-        }
-      }
-      // Tests if time has run out
-      if (timerCount === 0) {
-        // Clears interval
-        clearInterval(timer);
-        failQuiz();
-      }
-    }, 1000);
-  }
-
-  // The winGame function is called when the win condition is met
-function passQuiz() {
-  wordBlank.textContent = "YOU PASSED!!🏆 ";
-  winCounter++
-  startQuiz.disabled = false;
-  setPasses()
-}
-
-// The loseGame function is called when timer reaches 0
-function failQuiz() {
-  wordBlank.textContent = "Failed, try again!";
-  loseCounter++
-  startQuiz.disabled = false;
-  setFails()
-}
-
-// CORRECT THIS SECTION
-function setPasses() {
-  win.textContent = passCounter;
-  localStorage.setItem("passCount", passCounter);
-}
-
-// Updates lose count on screen and sets lose count to client storage
-function setFails() {
-  fail.textContent = failCounter;
-  localStorage.setItem("failCount", failCounter);
-}
-
-// These functions are used by init
-function getPasses() {
-  // Get stored value from client storage, if it exists
-  var storedPasses = localStorage.getItem("passCount");
-  // If stored value doesn't exist, set counter to 0
-  if (storedPasses === null) {
-    passCounter = 0;
+  var titleSection = document.querySelector(".TitleBox");
+  console.log(titleSection);
+  titleSection.classList.add("hide");
+  scoreBox.classList.remove("hide");
+  timerBox.classList.remove("hide");
+  quizBox.classList.remove("hide");
+  showQuestions();
+  timerStart();
+  // iterate through questions
+  if (event.currentTarget.innerText === questions[currentQuestion].answer) {
+    score++;
   } else {
-    // If a value is retrieved from client storage set the winCounter to that value
-    passCounter = storedPasses;
+    startTime -= 10;
   }
-  //Render win count to page
-  pass.textContent = passCounter;
 }
-
-function getFails() {
-  var storedFails = localStorage.getItem("failCount");
-  if (storedFails === null) {
-    loseCounter = 0;
-  } else {
-    failCounter = storedFails;
-  }
-  fail.textContent = failCounter;
-}
-
-
-
-// // Calls init() so that it fires when page opened
-// init();
-
-// Bonus: Add reset button
-var restartQuiz = document.querySelector(".restartQuiz");
-
+// Re-start quiz/timer
 function restartQuiz() {
-  // Resets win and loss counts
-  passCounter = 0;
-  failCounter = 0;
-  // Renders win and loss counts and sets them into client storage
-  setPasses()
-  setFails()
+  var titleSection = document.querySelector(".TitleBox");
+  console.log(titleSection);
+  titleSection.classList.remove("hide");
+  scoreBox.classList.add("hide");
+  timerBox.classList.add("hide");
+  quizBox.classList.add("hide");
+  showQuestions();
+  timerStart();
 }
-
-// Attach event listener to start button to call startGame function on click
+// Attach event listener to start button to call startQuiz function on click
 startButton.addEventListener("click", startQuiz);
-// Attaches event listener to button
-// restartQuiz.addEventListener("click", restartQuiz);
+resetButton.addEventListener("click", restartQuiz);
+
+// event listener for answer choices
+choiceA.addEventListener("click", choiceA);
+choiceB.addEventListener("click", choiceB);
+choiceC.addEventListener("click", choiceC);
+choiceD.addEventListener("click", choiceD);

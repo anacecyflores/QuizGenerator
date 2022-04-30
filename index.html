@@ -1,32 +1,49 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href= "style.css">
-    <title> Ana's Code Quiz </title>
-</head>
-<body>
-    <div class="TitleBox"> 
-        Code Quiz
- <button class="startTimer">Start</button>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="Stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Shadows+Into+Light&family=Source+Code+Pro:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <title>Code Quiz</title>
+  </head>
 
-    <div class="ScoreBox hide"> 
-        <h2>Pass: <span class="Pass">0 </span> </h2>
-        <h2>Fail: <span class="Fail">0</span></h2>
-    </div>
-
-    <div class="TimerBox hide"> 
-    <h3> Time Remaining: </h3>
-        <div class="large-font timer-count">60 Seconds</div>
-    </div>
-
-    <div class="QuizBox hide"> 
-        <h2 id="questionT"></h2>
-
+  <body>
+    <section class="TitleBox">
+      Code Quiz
+      <div class="startButton">
+        <button class="startTimer">Start</button>
       </div>
-    <button class="reset-button">Restart Quiz</button>
-<script src="script.js"></script>
-</body>
+    </section>
+
+    <section>
+      <div class="ScoreBox hide">
+        <h1>HIGH SCORES</h1>
+        <h2>*user names *</h2>
+        <h3 id="currentScore"></h3>
+      </div>
+
+      <div class="TimerBox hide">
+        <h3 id="timer">Time Remaining</h3>
+        <button class="resetButton">Restart Quiz</button>
+      </div>
+    </section>
+
+    <aside>
+      <div class="QuizBox hide">
+        <h4 id="questionT"></h4>
+        <button id="choiceA"></button>
+        <button id="choiceB"></button>
+        <button id="choiceC"></button>
+        <button id="choiceD"></button>
+      </div>
+    </aside>
+
+    <script src="script.js"></script>
+  </body>
 </html>

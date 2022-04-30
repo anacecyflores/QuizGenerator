@@ -1,57 +1,98 @@
 body {
-    background-color: lightblue;
-    }
+  background-color: lightblue;
+  font-family: 'Josefin Sans',
+  sans-serif;
+  font-family: 'Shadows Into Light',
+  cursive;
+  font-family: 'Source Code Pro',
+  monospace;
+}
+
+aside {
+  position: relative;
+  width: 50%;
+  /* padding-left: 5px;
+  margin-left: 5px; */
+  float: right;
+  padding-top: 50px;
+  padding-right: 5px;
+  margin-right: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+section {
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.startButton{
+  align-items: center;
+  border: solid 5px;
+  border-color: rgb(185, 10, 103);
+  height: fit-content;
+  width: fit-content;
+  align-self: center;
+} 
 
 .TitleBox {
-background-color: rgb(20, 7, 13);
-color: #fff;
-font-size: 350px;
-height: 50%;
-width: 100%;
-/* padding: 40px; */
-padding: auto;
-border: solid 3px whitesmoke;
-margin: 0%;
-text-align: center;
+  font-size: 200px;
+  height: 80%;
+  width: 100%;
+  padding: 40px;
+  padding: auto;
+  margin: 0%;
+  text-align: center;
 }
 
 .hide {
-display: none;
+  display: none;
 }
 
-  .ScoreBox {
-    background-color: rgb(132, 15, 74);
-    color: #fff;
-    height: 100px;
-    width: 400px;
-    padding: 20px;
-    border: solid 3px whitesmoke;
-    margin: 0%;
-    text-align: center;
-            }
+.ScoreBox {
+  background-color: rgb(132, 15, 74);
+  color: #fff;
+  height: 100px;
+  width: 400px;
+  padding: 20px;
+  border: solid 3px whitesmoke;
+  margin: 0%;
+  text-align: center;
+}
 
-
-  .TimerBox {
-    align-content: center;
-    background-color: rgb(186, 75, 130);
-    color: #fff;
-    height: 100px;
-    width: 600px;
-    padding: 20px;
-    border: solid 3px whitesmoke;
-    margin: 0%;
-    text-align: center;
-    align-items: center;
-            }
+.TimerBox {
+  align-content: center;
+  background-color: rgb(186, 75, 130);
+  color: #fff;
+  height: 100px;
+  width: 400px;
+  padding: 20px;
+  border: solid 3px whitesmoke;
+  margin: 0%;
+  text-align: center;
+  align-items: center;
+}
 
 .QuizBox {
-    background-color: rgb(244, 179, 211);
-    color: #fff;
-    height: 400px;
-    width: 900px;
-    padding: 20px;
-    border: solid 3px whitesmoke;
-    margin: 0%;
-    text-align: center;
-    align-items: center;
-        }
+  background-color: rgb(244, 179, 211);
+  color: #fff;
+  height: 60%;
+  width: 70%;
+  padding: 10px;
+  border: solid 3px whitesmoke;
+  margin: 0%;
+  text-align: center;
+  align-items: center;
+}
+/* change name */
+.option {
+  background: lightsteelblue;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
