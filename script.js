@@ -22,7 +22,7 @@ var currentQuestion = 0;
 // 60 seconds given for the quiz
 var startTime = 60;
 // global scorbece variable
-var highscore = 0;
+var score = 0;
 
 // timer function
 function timerStart() {
@@ -100,7 +100,7 @@ function startQuiz() {
         event.currentTarget.innerText ===
         questions[currentQuestion].correctAnswer
       ) {
-        highscore++;
+        score++;
       } else {
         startTime -= 10;
       }
@@ -118,37 +118,38 @@ function startQuiz() {
   });
 }
 function initialsInput() {
-  // local storage
-  var grade = [];
-  // var userInitials = userInitialsInput.value;
-  var userInitials = JSON.stringify(input.value);
-  if (localStorage.getItem("grade")) {
-    grade = JSON.parse(localStorage.getItem("grade"));
+  var finalScore = localStorage.getItem("scoreHi");
+
+  if (finalScore === null) {
+    highArray = [];
+  } else {
+    highArray = JSON.parse(finalScore);
   }
 
-  grade.push({
-    initials: userInitials,
-    score: highscore,
-  });
-  console.log(grade);
+  newGrade = `${input.value} Score: ${score}`;
 
-  let newScore = { initials: userInitials, Score: highscore };
-  // grade.push(newScore);
+  highArray.push(newGrade);
+  var stringArray = JSON.stringify(highArray);
+  localStorage.setItem("scoreHi", stringArray);
 
-  localStorage.setItem("grade", JSON.stringify({ grade }));
-  console.log(grade);
-
-  for (var i = 0; i < grade.length; i++) {
-    var p = document.createElement("p");
-    p.textContent =
-      "Initials: " +
-      grade[i].initials +
-      " ------------ " +
-      " Score: " +
-      grade[i].Score;
-    highTitle.appendChild(p);
-  }
+  showScores();
 }
+
+function showScores() {
+  var finalScore = localStorage.getItem("scoreHi");
+  console.log(finalScore);
+  var unRavel = JSON.parse(finalScore);
+
+  for (var i = 0; i < unRavel.length; i++) {
+    var userScore = document.createElement("li");
+    userScore.textContent = unRavel[i];
+    highTitle.appendChild(userScore);
+  }
+  console.log(unRavel);
+}
+submit.addEventListener("click", function (e) {
+  // console.log(input.value);
+});
 
 // Re-start quiz/timer
 function restartQuiz() {
@@ -166,5 +167,16 @@ function restartQuiz() {
 startButton.addEventListener("click", startQuiz);
 resetButton.addEventListener("click", restartQuiz);
 submit.addEventListener("click", function (e) {
-  // console.log(input.value);
+  if (input.value === "") {
+    alert("Please Enter your initials!");
+    return;
+  }
+  console.log(input.value);
+  initialsInput();
 });
+
+clearBtn.addEventListener("click", clearScore);
+
+function clearScore() {
+  localStorage.clear();
+}
