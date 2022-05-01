@@ -13,6 +13,8 @@
     <title>Code Quiz</title>
   </head>
 
+  <header>Test your Coding Skills against the clock!</header>
+
   <body>
     <section class="TitleBox">
       Code Quiz
@@ -23,9 +25,10 @@
 
     <section>
       <div class="ScoreBox hide">
-        <h1>HIGH SCORES</h1>
-        <h2>*user names *</h2>
-        <h3 id="currentScore"></h3>
+        <h1 id="high-title">HIGH SCORES</h1>
+        <input type="input" class="input" id="input"></input>
+        <button type="submit" class="submit" id="submit">Submit</button>
+
       </div>
 
       <div class="TimerBox hide">
@@ -37,10 +40,10 @@
     <aside>
       <div class="QuizBox hide">
         <h4 id="questionT"></h4>
-        <button id="choiceA"></button>
-        <button id="choiceB"></button>
-        <button id="choiceC"></button>
-        <button id="choiceD"></button>
+        <button class="choiceButtons" id="choiceA"></button>
+        <button class="choiceButtons" id="choiceB"></button>
+        <button class="choiceButtons" id="choiceC"></button>
+        <button class="choiceButtons" id="choiceD"></button>
       </div>
     </aside>
 

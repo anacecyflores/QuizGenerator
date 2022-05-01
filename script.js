@@ -6,22 +6,24 @@ var scoreBox = document.querySelector(".scoreBox");
 var timerBox = document.querySelector(".TimerBox");
 var quizBox = document.querySelector(".QuizBox");
 var timer = document.querySelector("#timer");
-var currentScore = document.querySelector("#currentScore");
+// var currentScore = document.querySelector("#currentScore");
 // quiz section global variables
 var questionDisplay = document.querySelector("#questionT");
 var choiceDisplay1 = document.querySelector("#choiceA");
 var choiceDisplay2 = document.querySelector("#choiceB");
 var choiceDisplay3 = document.querySelector("#choiceC");
 var choiceDisplay4 = document.querySelector("#choiceD");
+// High score & user initails
+
+var highTitle = document.getElementById("high-title");
 
 // Question Carousel (from student practice #18)
 var currentQuestion = 0;
 // 60 seconds given for the quiz
 var startTime = 60;
-// global score variable
-var score = 0;
-// adding score to current score in box
-currentScore = score;
+// global scorbece variable
+var highscore = 0;
+
 // timer function
 function timerStart() {
   let timeInterval;
@@ -80,6 +82,7 @@ function showQuestions() {
   choiceDisplay3.textContent = questions[currentQuestion].choiceC;
   choiceDisplay4.textContent = questions[currentQuestion].choiceD;
 }
+
 // This function hides items in the beginning of quiz
 function startQuiz() {
   var titleSection = document.querySelector(".TitleBox");
@@ -91,14 +94,65 @@ function startQuiz() {
   showQuestions();
   timerStart();
   // iterate through questions
-  if (event.currentTarget.innerText === questions[currentQuestion].answer) {
-    score++;
-  } else {
-    startTime -= 10;
+  document.querySelectorAll(".choiceButtons").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      if (
+        event.currentTarget.innerText ===
+        questions[currentQuestion].correctAnswer
+      ) {
+        highscore++;
+      } else {
+        startTime -= 10;
+      }
+      currentQuestion++;
+      if (currentQuestion > 3) {
+        titleSection.classList.add("hide");
+        scoreBox.classList.remove("hide");
+        timerBox.classList.add("hide");
+        quizBox.classList.add("hide");
+        initialsInput();
+      } else {
+        showQuestions();
+      }
+    });
+  });
+}
+function initialsInput() {
+  // local storage
+  var grade = [];
+  // var userInitials = userInitialsInput.value;
+  var userInitials = JSON.stringify(input.value);
+  if (localStorage.getItem("grade")) {
+    grade = JSON.parse(localStorage.getItem("grade"));
+  }
+
+  grade.push({
+    initials: userInitials,
+    score: highscore,
+  });
+  console.log(grade);
+
+  let newScore = { initials: userInitials, Score: highscore };
+  // grade.push(newScore);
+
+  localStorage.setItem("grade", JSON.stringify({ grade }));
+  console.log(grade);
+
+  for (var i = 0; i < grade.length; i++) {
+    var p = document.createElement("p");
+    p.textContent =
+      "Initials: " +
+      grade[i].initials +
+      " ------------ " +
+      " Score: " +
+      grade[i].Score;
+    highTitle.appendChild(p);
   }
 }
+
 // Re-start quiz/timer
 function restartQuiz() {
+  // startQuiz();
   var titleSection = document.querySelector(".TitleBox");
   console.log(titleSection);
   titleSection.classList.remove("hide");
@@ -111,9 +165,6 @@ function restartQuiz() {
 // Attach event listener to start button to call startQuiz function on click
 startButton.addEventListener("click", startQuiz);
 resetButton.addEventListener("click", restartQuiz);
-
-// event listener for answer choices
-choiceA.addEventListener("click", choiceA);
-choiceB.addEventListener("click", choiceB);
-choiceC.addEventListener("click", choiceC);
-choiceD.addEventListener("click", choiceD);
+submit.addEventListener("click", function (e) {
+  // console.log(input.value);
+});

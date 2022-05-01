@@ -11,8 +11,8 @@ body {
 aside {
   position: relative;
   width: 50%;
-  /* padding-left: 5px;
-  margin-left: 5px; */
+  padding-left: 5px;
+  margin-left: 5px;
   float: right;
   padding-top: 50px;
   padding-right: 5px;
@@ -24,10 +24,21 @@ section {
   position: relative;
   display: block;
   float: left;
+  align-items: center;
+  text-align: center;
+  font-size: large;
+    padding-right: 5px;
+    margin-right: 5px;
 }
 
+.buttonCenter {
+  text-align: center;
+  display:block;
+  width: 200px;
+}
 .startButton{
   align-items: center;
+  font-size: large;
   border: solid 5px;
   border-color: rgb(185, 10, 103);
   height: fit-content;
@@ -36,7 +47,9 @@ section {
 } 
 
 .TitleBox {
+  display: inline-block;
   font-size: 200px;
+  font-weight: bold;
   height: 80%;
   width: 100%;
   padding: 40px;
@@ -76,23 +89,26 @@ section {
 .QuizBox {
   background-color: rgb(244, 179, 211);
   color: #fff;
-  height: 60%;
-  width: 70%;
-  padding: 10px;
-  border: solid 3px whitesmoke;
+  font-weight: bold;
+  height: 600px;
+  width: 800px;
+  padding: 5px;
+  border: solid 15px whitesmoke;
   margin: 0%;
   text-align: center;
   align-items: center;
+  flex: content;
 }
-/* change name */
-.option {
-  background: lightsteelblue;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.5s ease;
+
+/* Media Querie */
+@media screen and (max-width: 992px) {
+  body {
+    background-color: rgb(178, 178, 251);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    background-color: rgb(117, 0, 128);
+  }
 }
