@@ -15,6 +15,8 @@ var choiceDisplay3 = document.querySelector("#choiceC");
 var choiceDisplay4 = document.querySelector("#choiceD");
 // High score & user initails
 
+var submitBtn = document.getElementById("submit");
+
 var highTitle = document.getElementById("high-title");
 
 // Question Carousel (from student practice #18)
@@ -88,7 +90,7 @@ function startQuiz() {
   var titleSection = document.querySelector(".TitleBox");
   console.log(titleSection);
   titleSection.classList.add("hide");
-  scoreBox.classList.remove("hide");
+
   timerBox.classList.remove("hide");
   quizBox.classList.remove("hide");
   showQuestions();
@@ -118,7 +120,10 @@ function startQuiz() {
   });
 }
 function initialsInput() {
+  console.log(startTime);
+  score += startTime;
   var finalScore = localStorage.getItem("scoreHi");
+  console.log(finalScore);
 
   if (finalScore === null) {
     highArray = [];
@@ -126,16 +131,13 @@ function initialsInput() {
     highArray = JSON.parse(finalScore);
   }
 
-  newGrade = `${input.value} Score: ${score}`;
-
-  highArray.push(newGrade);
-  var stringArray = JSON.stringify(highArray);
-  localStorage.setItem("scoreHi", stringArray);
-
-  showScores();
+  // showScores();
 }
 
 function showScores() {
+  var stringArray = JSON.stringify(highArray);
+  localStorage.setItem("scoreHi", stringArray);
+
   var finalScore = localStorage.getItem("scoreHi");
   console.log(finalScore);
   var unRavel = JSON.parse(finalScore);
@@ -147,9 +149,9 @@ function showScores() {
   }
   console.log(unRavel);
 }
-submit.addEventListener("click", function (e) {
-  // console.log(input.value);
-});
+// submit.addEventListener("click", function (e) {
+//   // console.log(input.value);
+// });
 
 // Re-start quiz/timer
 function restartQuiz() {
@@ -172,7 +174,13 @@ submit.addEventListener("click", function (e) {
     return;
   }
   console.log(input.value);
-  initialsInput();
+  newGrade = `${input.value} Score: ${score}`;
+
+  highArray.push(newGrade);
+  scoreBox.classList.remove("hide");
+  submitBtn.style.display = "none";
+
+  showScores();
 });
 
 clearBtn.addEventListener("click", clearScore);

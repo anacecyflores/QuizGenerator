@@ -26,7 +26,7 @@ section {
   float: left;
   align-items: center;
   text-align: center;
-  font-size: large;
+  font-size: bold;
     padding-right: 5px;
     margin-right: 5px;
 }
@@ -65,12 +65,12 @@ section {
 .ScoreBox {
   background-color: rgb(132, 15, 74);
   color: #fff;
-  height: 100px;
+  height: 400px;
   width: 400px;
   padding: 20px;
   border: solid 3px whitesmoke;
-  margin: 0%;
   text-align: center;
+  flex: content;
 }
 
 .TimerBox {
@@ -90,8 +90,8 @@ section {
   background-color: rgb(244, 179, 211);
   color: #fff;
   font-weight: bold;
-  height: 600px;
-  width: 800px;
+  height: 400px;
+  width: 600px;
   padding: 5px;
   border: solid 15px whitesmoke;
   margin: 0%;
